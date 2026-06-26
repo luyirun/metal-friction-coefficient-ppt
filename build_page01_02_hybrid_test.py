@@ -134,21 +134,21 @@ def add_background(slide, filename):
 
 def build_page01(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_background(slide, "page01_bg_notext_v2.png")
+    add_background(slide, "page01_bg_notext_v3.png")
     add_page_marker(slide, "01")
 
-    add_text(slide, "金属与冰", 118, 184, 710, 112, size=38, bold=True, color=TEAL_DARK)
-    add_text(slide, "摩擦系数的测量", 118, 300, 860, 126, size=38, bold=True, color=TEAL_DARK)
-    add_line(slide, 120, 437, 408, 437, color=ORANGE, width=2.0)
-    add_text(slide, "物理实验创新竞赛答辩", 120, 464, 560, 42, size=17, color=TEXT)
+    add_text(slide, "金属与冰", 118, 285, 710, 112, size=38, bold=True, color=TEAL_DARK)
+    add_text(slide, "摩擦系数的测量", 118, 401, 860, 126, size=38, bold=True, color=TEAL_DARK)
+    add_line(slide, 120, 538, 408, 538, color=ORANGE, width=2.0)
+    add_text(slide, "物理实验创新竞赛答辩", 120, 565, 560, 42, size=17, color=TEXT)
 
     add_icon_circle(slide, 144, 603, "●", size=28)
-    add_text(slide, "团队：", 202, 583, 90, 32, size=13, bold=True, color=TEAL_DARK)
-    add_text(slide, "极冰组陈者", 288, 583, 230, 32, size=13, color=TEXT)
+    add_text(slide, "团队：", 202, 684, 90, 32, size=13, bold=True, color=TEAL_DARK)
+    add_text(slide, "极冰组陈者", 288, 684, 230, 32, size=13, color=TEXT)
 
-    add_text(slide, "▣", 131, 674, 28, 28, size=14, bold=True, color=TEAL)
-    add_text(slide, "日期：", 202, 670, 90, 32, size=13, bold=True, color=TEAL_DARK)
-    add_text(slide, "2024.05.20", 288, 670, 230, 32, size=13, color=TEXT)
+    add_text(slide, "▣", 131, 775, 28, 28, size=14, bold=True, color=TEAL)
+    add_text(slide, "日期：", 202, 771, 90, 32, size=13, bold=True, color=TEAL_DARK)
+    add_text(slide, "2024.05.20", 288, 771, 230, 32, size=13, color=TEXT)
 
     footer_items = ["物理实验", "摩擦学研究", "精密测量", "工程创新"]
     x = 520
