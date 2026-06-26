@@ -1,0 +1,21 @@
+Use case: productivity-visual
+Asset type: PPT visual direction collage / presentation moodboard
+Primary request: Redesign the provided reference collage into a polished complete commercial PowerPoint storyboard. Keep exactly ten 16:9 slide thumbnails in a 2-column by 5-row grid, preserving the page order 01 to 10 and the same slide topics. The topic is "金属与冰摩擦系数的测量" / measurement of friction coefficient between metal and ice.
+Input image role: Use the input image as the structural reference for page count, order, thumbnail proportions, and approximate content blocks. Do not copy the rough drawing quality; convert it into a refined PPT design preview.
+Style/medium: premium scientific presentation design, polar engineering, clean icy realism, semi-photoreal technical diagrams mixed with modern PPT layout.
+Composition/framing: one large vertical collage containing all 10 slides, each slide is a sharp 16:9 widescreen thumbnail, 2 columns x 5 rows, generous spacing, visible page numbers and consistent footer.
+Color palette: glacier white, pale cyan, deep teal, steel gray, subtle ice blue gradients; restrained and formal.
+Visual system: unified Chinese sans-serif typography hierarchy, large slide titles, compact body text, thin technical line icons, clean diagrams, semi-transparent ice texture backgrounds, elegant footer and page numbers.
+Slide content to preserve in order:
+01 金属与冰摩擦系数的测量 - 可重复、可调控的测量系统
+02 选题背景 - 冰上摩擦影响极地航运阻力与能耗, 25%-55%, 13%-15%
+03 题目解读 - 机制分析、装置搭建、结果评估
+04 方法选择 - 动态斜面法, ma = mg sinθ - μmg cosθ
+05 装置设计 - 斜面冰面与竖直冰面双结构验证
+06 变量设计 - 温度、压强、材质、粗糙度、面积
+07 问题改进 - 冰面平整、低温保持、传感稳定
+08 数据处理 - x,t,θ → a → μ → 不确定度
+09 结果分析 - μ-温度, μ-压力, μ-粗糙度 trend charts
+10 总结展望 - 自制装置、多变量测量、工程应用
+Constraints: all ten thumbnails must be present, correct order, each thumbnail 16:9 landscape, consistent visual system, refined and presentation-ready, no messy overlapping text, no watermarks.
+Avoid: random extra pages, wrong page order, portrait slides, chaotic collage, cartoon style, decorative blobs, illegible giant paragraphs, fake brand logos.

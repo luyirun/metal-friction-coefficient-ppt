@@ -1,0 +1,21 @@
+Use case: productivity-visual
+Asset type: PPT visual direction collage / presentation moodboard
+Primary request: Transform the provided reference collage into a complete premium dark laboratory dashboard style PowerPoint storyboard. Keep exactly ten 16:9 slide thumbnails in a 2-column by 5-row grid, preserving page order 01 to 10 and the same scientific topic: "金属与冰摩擦系数的测量".
+Input image role: Use the input image as the layout and content reference. Preserve the 10-slide sequence, title rhythm, diagrams, bullets, charts, and page numbering; upgrade the visual design.
+Style/medium: dark high-tech laboratory interface, low-temperature tribology lab, instrument dashboard, sensor data visualization, modern engineering competition presentation.
+Composition/framing: one complete collage, 2 columns x 5 rows, ten distinct 16:9 slide thumbnails, each slide has consistent header, footer, page number, and modular data panels.
+Color palette: deep graphite black, dark blue-gray, cyan glow, mint green telemetry lines, amber highlight for key formulas and numbers.
+Visual system: dark grid backgrounds, glowing technical line diagrams, oscilloscope-like charts, sensor cards, thin neon icons, formula callouts, consistent Chinese sans-serif type hierarchy.
+Slide content to preserve in order:
+01 金属与冰摩擦系数的测量 - measurement system
+02 选题背景 - Arctic shipping, 25%-55%, 13%-15%, ice resistance
+03 题目解读 - mechanism, device, uncertainty
+04 方法选择 - inclined plane dynamics formula ma = mg sinθ - μmg cosθ
+05 装置设计 - inclined ice plane and vertical ice plane modules
+06 变量设计 - temperature, pressure, metal material, roughness, contact area
+07 问题改进 - flat ice, stable low temperature, sensor reliability
+08 数据处理 - x,t,θ to acceleration to friction coefficient
+09 结果分析 - trend charts μ-temperature, μ-pressure, μ-roughness
+10 总结展望 - self-built apparatus, multivariable measurement, polar equipment application
+Constraints: all ten slide thumbnails visible, correct order, 16:9 landscape thumbnails, unified dark interface design, readable main Chinese titles and key formulas, professional and formal, no watermark.
+Avoid: cyberpunk clutter, unrelated spacecraft, random UI screens, extra slides, wrong numbering, unreadable text blocks, chaotic neon.

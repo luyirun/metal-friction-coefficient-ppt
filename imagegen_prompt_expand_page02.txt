@@ -1,0 +1,41 @@
+Use case: productivity-visual
+Asset type: independent 16:9 high-resolution PPT single-slide visual blueprint
+Input images: Image 1 is the confirmed page 02 thumbnail reference cropped from the approved 10-slide collage. Use it as the strict visual master for layout, composition, colors, hierarchy, and subject placement.
+
+Primary request:
+Expand Image 1 into one independent high-resolution 16:9 PowerPoint slide visual draft for page 02 only. This is not a redesign, not a new concept, and not a new slide. It is a faithful high-resolution reconstruction of the thumbnail, suitable as a visual blueprint for later PPT Master editable reconstruction.
+
+Page identity:
+Page number: 02
+Main title text: 选题背景
+Core numeric callouts: 25% - 55%, 13% - 15%
+
+Strict layout to preserve:
+- Landscape 16:9 slide, straight orthographic PPT screenshot, no perspective frame.
+- Large page number "02" in the upper-left, deep navy, matching page 01 style.
+- Title "选题背景" below the page number, large bold deep navy.
+- Left side has a short background paragraph block under the title, about polar navigation and ice resistance; keep it concise and readable.
+- Left side has two large orange key-number blocks: "25% - 55%" and "13% - 15%", stacked vertically, with short gray explanatory captions under each.
+- Right and center-right are dominated by a photoreal red-and-white icebreaker ship cutting through Arctic sea ice.
+- Background is a wide polar ice field with distant glacier mountains, pale glacier-white and ice-blue atmosphere.
+- Bottom-left has subtle footer mark and footer text; bottom-right has page counter "02 / 10".
+
+Visual system to preserve:
+Premium polar engineering Keynote style, glacier-light background, deep navy typography, small orange accents for key data, clean negative space, photoreal Arctic engineering application scene. The page should feel like the confirmed collage page 02, only expanded to high resolution.
+
+Text rules:
+Render the page number, title, key percentages, and page counter clearly if possible.
+Use concise Chinese for body/captions; do not generate long random Chinese text.
+Suggested body meaning: polar routes shorten voyage distance, but sea ice resistance affects ship energy consumption and safety; measuring metal-ice friction supports polar equipment design.
+Suggested captions:
+- under 25% - 55%: 冰阻占总阻力比例
+- under 13% - 15%: 极地航线节能潜力
+If small footer text is uncertain, use short clean text or subtle line placeholders, but no乱码 and no meaningless long strings.
+
+Expansion rules:
+Keep original composition exactly: left information column, right icebreaker hero, pale glacier background, bottom footer.
+Only improve resolution, ship detail, ice texture, atmospheric depth, and typography clarity.
+Do not move the ship to the left. Do not replace the ship with another vehicle. Do not add new charts or modules.
+
+Avoid:
+collage, multi-slide layout, poster mockup, angled paper, shadow frame, desktop scene, camera photo, website UI, dark cyber dashboard, industrial whitepaper style, over-glow, neon colors, extra cards, extra data, watermark, logos, gibberish Chinese text, random additional percentages, new conclusions.

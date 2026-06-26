@@ -1,0 +1,35 @@
+Use case: productivity-visual
+Asset type: independent 16:9 high-resolution PPT single-slide visual blueprint
+Input images: Image 1 is the confirmed page 03 thumbnail reference cropped from the approved 10-slide collage. Use it as the strict visual master for layout, composition, colors, hierarchy, and subject placement.
+
+Primary request:
+Expand Image 1 into one independent high-resolution 16:9 PowerPoint slide visual draft for page 03 only. This is a faithful high-resolution reconstruction, not a redesign.
+
+Page identity:
+Page number: 03
+Main title text: 题目解读
+Subtitle meaning: 研究路径三步骤
+Three step labels: 机理分析, 装置搭建, 结果评估
+
+Strict layout to preserve:
+- Landscape 16:9, straight orthographic PPT screenshot.
+- Upper-left large page number "03" and title "题目解读" in deep navy.
+- Small subtitle below title.
+- Center area contains exactly three circular icon modules arranged horizontally.
+- The three modules are connected by thin arrows from left to right.
+- Module 1: magnifier / molecular or mechanism icon, label 机理分析.
+- Module 2: apparatus / test rig icon, label 装置搭建.
+- Module 3: chart / trend icon, label 结果评估.
+- Pale glacier-white and ice-blue background with subtle distant ice landscape and clean negative space.
+- Small footer mark lower-left and page counter lower-right.
+
+Visual system:
+Premium polar engineering Keynote style, pale ice-blue background, deep navy typography, fine technical line icons, subtle translucent circular panels, quiet high-end scientific presentation.
+
+Text rules:
+Render page number, main title, and three step labels clearly.
+Small explanatory text may be simplified into short clean lines; no乱码 and no meaningless long sentences.
+Do not invent extra steps or change the three-step logic.
+
+Avoid:
+collage, multi-slide layout, extra modules, different page structure, colorful cartoon icons, dark dashboard, industrial whitepaper, heavy cards, random text, watermark, perspective frame.

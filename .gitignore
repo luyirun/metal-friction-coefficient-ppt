@@ -1,0 +1,31 @@
+# Local and generated files
+tmp/
+output/
+outputs/
+_tmp_pptmaster_clone/
+
+# Generated presentation/media artifacts
+*.pptx
+*.ppt
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.tif
+*.tiff
+*.bmp
+
+# Extracted Office package validation output
+**/validation/pptx_xml_check/
+**/validation/ppt_export/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# PowerPoint/Office temporary files
+~$*
+
+# Logs
+*.log

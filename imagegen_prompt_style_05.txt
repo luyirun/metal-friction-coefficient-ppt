@@ -1,0 +1,21 @@
+Use case: productivity-visual
+Asset type: premium PowerPoint storyboard collage
+Primary request: Generate a complete 10-slide PPT collage design for "金属与冰摩擦系数的测量". It should feel like a mature engineering research defense deck for a physics experiment innovation competition. Show exactly ten 16:9 slide thumbnails in a 2-column x 5-row grid, ordered 01 to 10.
+Style/medium: industrial engineering whitepaper + premium product design board, clean light background, precise apparatus drawings, metallic material realism, restrained academic elegance.
+Composition/framing: vertical moodboard with ten polished widescreen slide thumbnails. Use varied layouts: hero page, split photo-data page, diagram page, apparatus page, factor matrix page, problem-solution page, process page, chart page, closing page. Keep strong visual hierarchy and high-end spacing.
+Color palette: warm white, graphite black, brushed aluminum gray, deep teal, muted safety orange, pale ice blue.
+Typography: serious Chinese sans-serif, strong title hierarchy, concise labels, clean page numbers. Main Chinese titles should be legible.
+Visual system: technical blueprint lines, CAD-like apparatus render, real ice texture, brushed metal blocks, refined data charts, clean icons with consistent stroke weight, subtle grid only as engineering reference, not dark UI.
+Slide sequence and content:
+01 金属与冰摩擦系数的测量 - project hero with apparatus and title.
+02 选题背景 - Arctic shipping and ice resistance, 25%-55%, 13%-15%.
+03 题目解读 - mechanism analysis, device building, result and uncertainty.
+04 方法选择 - dynamic inclined plane method, force model and formula.
+05 装置设计 - inclined ice plane + vertical ice plane module.
+06 变量设计 - six variables: 温度, 压强, 材质, 粗糙度, 面积, 成分.
+07 问题改进 - flat ice making, low-temperature stability, sensor reliability.
+08 数据处理 - acquisition to acceleration to μ to uncertainty.
+09 结果分析 - comparative trend charts and data interpretation.
+10 总结展望 - innovation points and engineering application.
+Constraints: exactly 10 slide thumbnails, 2 columns x 5 rows, each thumbnail 16:9 landscape, correct page order 01-10, coherent commercial PPT system, advanced but readable, no watermark.
+Avoid: dark neon dashboard, simple flat wireframe, generic template look, excessive cards, cartoon, low-end clipart, extra pages, wrong ordering.

@@ -1,0 +1,33 @@
+Use case: productivity-visual
+Asset type: independent 16:9 high-resolution PPT single-slide visual blueprint
+Input images: Image 1 is the confirmed page 04 thumbnail reference cropped from the approved 10-slide collage. Use it as the strict visual master for layout, composition, colors, hierarchy, and subject placement.
+
+Primary request:
+Expand Image 1 into one independent high-resolution 16:9 PowerPoint slide visual draft for page 04 only. This is a faithful high-resolution reconstruction, not a redesign.
+
+Page identity:
+Page number: 04
+Main title text: 方法选择
+Method subtitle: 倾斜平面法
+Key formulas: ma = mg sinθ - μmg cosθ; μ = (g sinθ - a) / (g cosθ)
+
+Strict layout to preserve:
+- Landscape 16:9, straight orthographic PPT screenshot.
+- Upper-left has page number "04" and title "方法选择" in deep navy.
+- Left-middle has formula text and a pale translucent formula box.
+- Right side contains the main inclined-plane force diagram: transparent blue ice ramp, metal block on slope, thin technical arrows and labels.
+- Keep force labels such as N, f = μN, mg, mg sinθ, mg cosθ where readable.
+- Keep the diagram's geometry: slope rising to the right, block near upper-right, arrows overlaid, baseline triangle at bottom.
+- Pale glacier background, deep navy technical strokes, subtle orange accent near the subtitle.
+- Footer lower-left and page counter lower-right.
+
+Visual system:
+Premium polar engineering Keynote style, scientific diagram precision, soft ice material, clean formula panel, fine lines, no clutter.
+
+Text rules:
+Render page number, title, method subtitle, and formulas clearly if possible.
+Do not generate random formula text. If small labels are uncertain, keep short scientific labels only.
+Do not invent new equations or data.
+
+Avoid:
+collage, multi-slide layout, changed diagram layout, dark dashboard, over-glow, messy formulas, gibberish labels, extra charts, poster frame, watermark.

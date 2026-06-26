@@ -1,0 +1,128 @@
+{
+  "source": "F:\\Users\\user\\Documents\\测金属摩擦系数\\projects\\slide09_whitepaper\\sources\\metal_ice_whitepaper_native_editable.pptx",
+  "slide_count": 10,
+  "canvas": {
+    "width_px": 1536,
+    "height_px": 864,
+    "aspect": 1.7778
+  },
+  "theme": {
+    "palette": {
+      "background": "#FFFFFF",
+      "background_alt": "#EEECE1",
+      "text": "#000000",
+      "text_alt": "#1F497D",
+      "hyperlink": "#0000FF",
+      "accent1": "#4F81BD",
+      "accent2": "#C0504D",
+      "accent3": "#9BBB59",
+      "accent4": "#8064A2",
+      "accent5": "#4BACC6",
+      "accent6": "#F79646",
+      "primary": "#4F81BD"
+    },
+    "fonts": {
+      "title": {
+        "latin": "Calibri"
+      },
+      "body": {
+        "latin": "Calibri"
+      }
+    },
+    "sizes": {
+      "title": 44.0,
+      "body": 32.0,
+      "body_levels": [
+        32.0,
+        28.0,
+        24.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ]
+    }
+  },
+  "observed": {
+    "fonts": {
+      "latin": [
+        {
+          "value": "Microsoft YaHei",
+          "count": 219
+        }
+      ],
+      "ea": []
+    },
+    "sizes_pt": [
+      {
+        "value": 12.0,
+        "count": 23
+      },
+      {
+        "value": 12.5,
+        "count": 22
+      },
+      {
+        "value": 14.0,
+        "count": 18
+      },
+      {
+        "value": 13.0,
+        "count": 16
+      },
+      {
+        "value": 22.0,
+        "count": 13
+      },
+      {
+        "value": 10.8,
+        "count": 12
+      },
+      {
+        "value": 11.3,
+        "count": 12
+      },
+      {
+        "value": 10.6,
+        "count": 11
+      }
+    ],
+    "colors": [
+      {
+        "value": "#004854",
+        "count": 158
+      },
+      {
+        "value": "#1C2C31",
+        "count": 93
+      },
+      {
+        "value": "#D3E1E5",
+        "count": 44
+      },
+      {
+        "value": "#FFFFFF",
+        "count": 41
+      },
+      {
+        "value": "#586C72",
+        "count": 24
+      },
+      {
+        "value": "#E27E27",
+        "count": 17
+      },
+      {
+        "value": "#B7D8E0",
+        "count": 16
+      },
+      {
+        "value": "#E2F3F7",
+        "count": 16
+      }
+    ]
+  },
+  "layout_sizes_pt": []
+}

@@ -1,0 +1,50 @@
+Use case: productivity-visual
+Asset type: high-end PowerPoint storyboard collage / visual direction reference image
+
+Primary request:
+Create a premium visual direction collage for a 10-slide scientific competition PowerPoint deck about "金属与冰摩擦系数的测量" (measurement of friction coefficient between metal and ice). The output is a raster image used only as a style reference, not the final editable PPT. It must look significantly more premium and visually restored than a crude editable PowerPoint rebuild.
+
+Core direction:
+Follow the existing premium polar Keynote direction: glacier-light background, deep navy Chinese typography, photorealistic ice and metal materials, refined engineering presentation layout. Keep the clean high-end feeling of the reference sample, but make it more polished, more cinematic, and more expensive. Avoid industrial whitepaper style, avoid plain whiteboard text areas, avoid rough card grids, avoid low-fidelity editable-looking text boxes.
+
+Composition/framing:
+Exactly ten 16:9 widescreen slide thumbnails in a clean 2-column x 5-row vertical collage, ordered 01 to 10. Each thumbnail should be a complete slide design with subtle margins, aligned page numbers, a small footer system, and distinct composition. No missing slides. No repeated identical layouts.
+
+Visual style:
+Premium polar engineering Keynote, high-end scientific presentation, calm glacier-white and frosted ice-blue atmosphere, deep petroleum navy typography, silver metal, clean negative space, subtle glass panels, fine technical lines, elegant data visualization. The slides should feel like a high-budget Apple Keynote-style science deck, not a normal academic report.
+
+Color palette:
+Glacier white, frosted blue, pale mist blue, deep navy, deep petroleum teal, silver metal, tiny orange accent only for key values or conclusions. Do not use a dark cyber dashboard background. Do not use beige, brown, purple, neon, or heavy industrial gray.
+
+Typography:
+Modern bold Chinese sans-serif title style. Large slide numbers such as 01, 02, 03. Main headings should be strong and readable. Body copy may be concise or represented as refined text lines, but it must not become dense or messy. Text should look like intentional presentation typography. If exact Chinese text cannot be perfectly rendered, prioritize clean believable heading blocks and visual hierarchy rather than random illegible clutter.
+
+Must-match visual qualities:
+1. Cold polar atmosphere with glacier light and soft mist.
+2. Photorealistic metallic block, transparent ice, apparatus structure, and polar engineering scenes.
+3. Strong Keynote hierarchy with large page numbers and deep navy titles.
+4. Fine technical diagrams, formulas, and chart styling.
+5. Clean whitespace and premium restraint, not crowded.
+6. Small orange accents for key numbers or important conclusions.
+7. A coherent footer and page-number system across all ten slides.
+
+Slide sequence:
+01 Title: 金属与冰摩擦系数的测量. Hero visual: a realistic brushed metal block sliding on a transparent glowing ice ramp apparatus; cinematic glacier background; strong deep navy title on the left.
+02 选题背景. Visual: polar route / icebreaker ship in Arctic ice, with clean key numbers 25%-55% and 13%-15% in orange.
+03 题目解读. Visual: three-step research map with refined thin-line icons: 机理分析, 装置搭建, 结果评估.
+04 方法选择. Visual: inclined plane force diagram, metal block on ice slope, precise arrows, formula ma = mg sinθ - μmg cosθ.
+05 装置设计. Visual: premium render of a dual-mode friction testing apparatus with transparent ice plane, metal slider, sensors, aluminum frame; editable-looking labels should be elegant, not rough.
+06 变量设计. Visual: factor matrix around μ with temperature, pressure, material, roughness, area, composition; subtle radial technical graphic.
+07 问题改进. Visual: three refined visual tiles for ice preparation, flatness and temperature control, sensor reliability; use realistic close-ups.
+08 数据处理. Visual: process flow x,t,θ -> a -> μ -> U(μ), clean formula panel and fine arrows.
+09 结果分析. Visual: premium multi-chart dashboard with three line charts: μ-temperature, μ-pressure, μ-roughness; no plain whiteboard chart boxes; use pale glass panels, thin gridlines, deep blue trends, orange highlights.
+10 总结展望. Visual: closing synthesis with apparatus and polar engineering application, icebreaker ship, final conclusion strip.
+
+Specific improvement over the unsatisfactory editable PPT attempt:
+Do not show large crude white panels that look like blank PowerPoint text boxes. Do not sacrifice visual fidelity for editability in this raster reference. Use layered, elegant, icy translucent surfaces and integrated composition. Text areas should feel designed into the slide, not pasted on top.
+
+Constraints:
+Exactly ten thumbnails. Correct order 01-10. Two columns, five rows. Every thumbnail is 16:9. Professional and formal. High production value. No watermark. No logos other than generic university-style small footer mark. No dark cyber lab dashboard. No industrial whitepaper style. No childish icons. No clutter. No missing page numbers. No random page order.
+
+Avoid:
+plain whiteboard, rough wireframe, visible placeholder boxes, low-quality clipart, random unreadable text chaos, overpacked cards, black cyber dashboard, industrial whitepaper, beige/brown palette, purple neon, flat office template, screenshot-like PowerPoint edit handles, watermarks.
