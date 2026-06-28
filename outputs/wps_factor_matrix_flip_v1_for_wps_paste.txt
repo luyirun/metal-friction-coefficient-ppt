@@ -212,6 +212,15 @@
       right: 112px;
       top: 316px;
       height: 536px;
+      transition: opacity 0.32s ease, transform 0.32s ease;
+    }
+
+    .slide.detail-open .matrix-wrap,
+    .slide.detail-open .summary-bar {
+      visibility: hidden;
+      opacity: 0;
+      transform: scale(0.975);
+      pointer-events: none;
     }
 
     .matrix {
@@ -413,7 +422,7 @@
       height: 100%;
       padding: 16px 22px 14px;
       display: grid;
-      grid-template-rows: auto auto auto auto auto;
+      grid-template-rows: auto auto auto 92px auto auto;
       gap: 5px;
       text-align: left;
     }
@@ -442,21 +451,79 @@
       line-height: 1.22;
     }
 
+    .mini-chart {
+      width: 100%;
+      height: 92px;
+      display: block;
+      overflow: visible;
+      border: 1px solid rgba(23,109,191,0.15);
+      border-radius: 10px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.72), rgba(244,250,255,0.72)),
+        linear-gradient(90deg, rgba(23,109,191,0.05), transparent);
+    }
+
+    .mini-chart text {
+      font-family: "Microsoft YaHei", "Source Han Sans SC", Arial, sans-serif;
+      font-size: 9px;
+      fill: var(--muted);
+    }
+
+    .mini-chart .axis {
+      stroke: rgba(7,52,111,0.38);
+      stroke-width: 1.2;
+    }
+
+    .mini-chart .grid-line {
+      stroke: rgba(23,109,191,0.16);
+      stroke-width: 1;
+      stroke-dasharray: 3 4;
+    }
+
+    .mini-chart .trend-line {
+      fill: none;
+      stroke: var(--navy-2);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .mini-chart .trend-fill {
+      fill: rgba(23,109,191,0.08);
+    }
+
+    .mini-chart .point {
+      fill: var(--navy-2);
+      stroke: #FFFFFF;
+      stroke-width: 2;
+    }
+
+    .mini-chart .point-accent {
+      fill: var(--orange);
+    }
+
+    .mini-chart .bar {
+      fill: rgba(23,109,191,0.72);
+    }
+
+    .mini-chart .bar-accent {
+      fill: rgba(255,122,26,0.82);
+    }
+
     table {
       width: 100%;
-      align-self: stretch;
       border-collapse: separate;
       border-spacing: 0;
       overflow: hidden;
       border: 1px solid rgba(23,109,191,0.16);
       border-radius: 10px;
       background: rgba(255,255,255,0.62);
-      font-size: 13px;
+      font-size: 10px;
     }
 
     th,
     td {
-      padding: 5px 10px;
+      padding: 2px 9px;
       border-bottom: 1px solid rgba(23,109,191,0.13);
       text-align: left;
       color: var(--text);
@@ -483,13 +550,39 @@
       border-bottom: 0;
     }
 
+    .data-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .data-chip {
+      min-width: 0;
+      padding: 5px 8px;
+      border: 1px solid rgba(23,109,191,0.15);
+      border-radius: 9px;
+      background: rgba(255,255,255,0.64);
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.12;
+      white-space: nowrap;
+    }
+
+    .data-chip strong {
+      display: block;
+      margin-top: 2px;
+      color: #E06F10;
+      font-family: "Consolas", "Cascadia Mono", "Microsoft YaHei", monospace;
+      font-size: 12px;
+    }
+
     .conclusion {
       display: block;
       margin: 0;
-      padding: 6px 10px 6px 12px;
+      padding: 5px 10px 5px 12px;
       color: var(--navy);
-      font-size: 11px;
-      line-height: 1.28;
+      font-size: 10px;
+      line-height: 1.22;
       border-left: 3px solid var(--orange);
       background: rgba(255,255,255,0.56);
       border-radius: 0 10px 10px 0;
@@ -515,6 +608,382 @@
       color: #FFFFFF;
       background: var(--blue);
       border-color: var(--blue);
+    }
+
+    .analysis-overlay {
+      position: absolute;
+      left: 112px;
+      right: 112px;
+      top: 316px;
+      height: 560px;
+      z-index: 8;
+      display: grid;
+      grid-template-columns: 228px minmax(0, 1fr) 400px;
+      grid-template-rows: 454px 82px;
+      column-gap: 28px;
+      row-gap: 20px;
+      padding: 0;
+      border-radius: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      opacity: 0;
+      transform: translateY(18px) scale(0.985);
+      pointer-events: none;
+      transition: opacity 0.36s ease, transform 0.36s cubic-bezier(0.2, 0.78, 0.18, 1);
+    }
+
+    .slide.detail-open .analysis-overlay {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .analysis-overlay::before { content: none; }
+
+    .analysis-nav {
+      position: relative;
+      z-index: 1;
+      grid-row: 1 / 3;
+      display: grid;
+      grid-template-rows: auto repeat(6, 1fr);
+      gap: 10px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(139,188,230,0.52);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(244,250,255,0.72)),
+        linear-gradient(135deg, rgba(220,238,255,0.68), rgba(255,255,255,0.58));
+      box-shadow: 0 22px 48px rgba(66,104,145,0.15);
+    }
+
+    .analysis-nav-title {
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 760;
+      padding: 2px 2px 8px;
+      border-bottom: 1px solid rgba(23,109,191,0.16);
+    }
+
+    .analysis-nav-button {
+      border: 1px solid rgba(23,109,191,0.16);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.62);
+      color: rgba(7,52,111,0.66);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 0 12px;
+      text-align: left;
+      font-size: 15px;
+      font-weight: 700;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .analysis-nav-button span:first-child {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--blue);
+      background: rgba(220,238,255,0.72);
+      font-weight: 800;
+    }
+
+    .analysis-nav-button.active {
+      color: var(--navy);
+      border-color: rgba(255,122,26,0.56);
+      background: rgba(255,255,255,0.92);
+      transform: translateX(6px);
+      box-shadow: 0 10px 22px rgba(66,104,145,0.12);
+    }
+
+    .analysis-nav-button.active span:first-child {
+      color: #FFFFFF;
+      background: var(--orange);
+    }
+
+    .analysis-chart-panel {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 14px;
+      padding: 28px 30px 30px;
+      border-radius: 22px;
+      border: 1px solid rgba(139,188,230,0.58);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(244,250,255,0.86)),
+        linear-gradient(135deg, rgba(220,238,255,0.70), rgba(255,255,255,0.58));
+      box-shadow: 0 24px 56px rgba(66,104,145,0.17);
+    }
+
+    .analysis-kicker {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--blue);
+      font-size: 18px;
+      font-weight: 720;
+    }
+
+    .analysis-kicker::before {
+      content: "";
+      width: 58px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange), rgba(255,122,26,0.25));
+    }
+
+    .analysis-chart {
+      width: 100%;
+      height: 360px;
+      border: 0;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.74), rgba(244,250,255,0.68)),
+        linear-gradient(90deg, rgba(23,109,191,0.05), transparent);
+      overflow: hidden;
+    }
+
+    .analysis-chart svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .analysis-chart text {
+      font-family: "Microsoft YaHei", "Source Han Sans SC", Arial, sans-serif;
+      fill: var(--muted);
+      font-size: 18px;
+    }
+
+    .analysis-chart .chart-title {
+      fill: var(--navy);
+      font-size: 26px;
+      font-weight: 760;
+    }
+
+    .analysis-chart .axis {
+      stroke: rgba(7,52,111,0.46);
+      stroke-width: 2;
+    }
+
+    .analysis-chart .grid {
+      stroke: rgba(23,109,191,0.16);
+      stroke-width: 1.4;
+      stroke-dasharray: 5 7;
+    }
+
+    .analysis-chart .trend {
+      fill: none;
+      stroke: var(--navy-2);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .analysis-chart .area {
+      fill: rgba(23,109,191,0.09);
+    }
+
+    .analysis-chart .dot {
+      fill: var(--navy-2);
+      stroke: #FFFFFF;
+      stroke-width: 4;
+    }
+
+    .analysis-chart .dot-accent {
+      fill: var(--orange);
+    }
+
+    .analysis-chart .bar {
+      fill: rgba(23,109,191,0.78);
+    }
+
+    .analysis-chart .bar-accent {
+      fill: rgba(255,122,26,0.86);
+    }
+
+    .slide.detail-open .analysis-chart .trend {
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      animation: drawTrend 0.9s cubic-bezier(0.2, 0.72, 0.18, 1) forwards 0.12s;
+    }
+
+    .slide.detail-open .analysis-chart .area {
+      opacity: 0;
+      animation: fadeChartArea 0.7s ease forwards 0.45s;
+    }
+
+    .slide.detail-open .analysis-chart .dot {
+      opacity: 0;
+      animation: popPoint 0.32s ease forwards 0.82s;
+    }
+
+    .slide.detail-open .analysis-chart .bar {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      transform: scaleY(0);
+      animation: growBar 0.72s cubic-bezier(0.2, 0.72, 0.18, 1) forwards 0.18s;
+    }
+
+    @keyframes drawTrend {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes fadeChartArea {
+      to { opacity: 1; }
+    }
+
+    @keyframes popPoint {
+      to { opacity: 1; }
+    }
+
+    @keyframes growBar {
+      to { transform: scaleY(1); }
+    }
+
+    .analysis-info {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto auto auto 1fr;
+      gap: 10px;
+      padding: 26px 28px 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(139,188,230,0.54);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(244,250,255,0.78)),
+        linear-gradient(135deg, rgba(220,238,255,0.62), rgba(255,255,255,0.58));
+      box-shadow: 0 20px 46px rgba(66,104,145,0.14);
+    }
+
+    .analysis-close {
+      position: absolute;
+      right: 24px;
+      top: 22px;
+      width: 120px;
+      height: 40px;
+      border: 1px solid rgba(23,109,191,0.34);
+      border-radius: 999px;
+      color: var(--navy);
+      background: rgba(255,255,255,0.78);
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      box-shadow: 0 7px 15px rgba(66,104,145,0.10);
+    }
+
+    .analysis-close:hover {
+      color: #FFFFFF;
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .analysis-index {
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--blue);
+      font-size: 30px;
+      font-weight: 780;
+      border: 1px solid rgba(23,109,191,0.24);
+      background: linear-gradient(180deg, #FFFFFF, #E7F3FF);
+      box-shadow: 0 12px 26px rgba(66,104,145,0.14);
+    }
+
+    .analysis-title {
+      margin: 0;
+      padding-right: 136px;
+      color: var(--navy);
+      font-size: 39px;
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .analysis-control {
+      margin: 0;
+      color: var(--blue);
+      font-size: 15px;
+      line-height: 1.36;
+      font-weight: 700;
+    }
+
+    .analysis-baseline {
+      margin: 0;
+      padding: 11px 14px;
+      border-radius: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(23,109,191,0.13);
+    }
+
+    .analysis-data {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .analysis-data .data-chip {
+      padding: 8px 12px;
+      font-size: 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.74);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .analysis-data .data-chip strong {
+      margin-top: 0;
+      font-size: 19px;
+    }
+
+    .analysis-conclusion {
+      position: relative;
+      z-index: 1;
+      grid-column: 2 / 4;
+      margin: 0;
+      padding: 17px 28px 17px 92px;
+      border-left: 0;
+      border-radius: 18px;
+      color: #FFFFFF;
+      background:
+        linear-gradient(90deg, rgba(7,52,111,0.98), rgba(10,76,154,0.92)),
+        linear-gradient(135deg, rgba(255,255,255,0.16), transparent);
+      font-size: 23px;
+      line-height: 1.3;
+      font-weight: 720;
+      box-shadow: 0 16px 34px rgba(7,52,111,0.20);
+    }
+
+    .analysis-conclusion::before {
+      content: "μ";
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--navy);
+      background: #FFFFFF;
+      transform: translateY(-50%);
+      font-size: 26px;
+      font-weight: 800;
     }
 
     .summary-bar {
@@ -655,7 +1124,7 @@
 
     <section class="matrix-wrap">
       <div class="matrix" aria-label="六项影响因素">
-        <div class="card" role="button" tabindex="0" aria-label="查看冰面温度数据">
+        <div class="card" role="button" tabindex="0" data-factor="temperature" aria-label="查看冰面温度数据">
           <span class="card-inner">
             <span class="face card-front">
               <span class="front-content">
@@ -676,14 +1145,27 @@
                 <span class="back-title">冰面温度</span>
                 <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
                 <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
-                <table>
-                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
-                  <tbody>
-                    <tr><td>-10°C</td><td>0.032</td></tr>
-                    <tr><td>-5°C</td><td>0.041</td></tr>
-                    <tr><td>0°C</td><td>0.058</td></tr>
-                  </tbody>
-                </table>
+                <svg class="mini-chart" viewBox="0 0 430 82" aria-label="冰面温度趋势图">
+                  <path class="trend-fill" d="M42 56 L190 45 L338 24 L338 66 L42 66 Z"></path>
+                  <line class="axis" x1="42" y1="66" x2="380" y2="66"></line>
+                  <line class="axis" x1="42" y1="14" x2="42" y2="66"></line>
+                  <line class="grid-line" x1="42" y1="42" x2="380" y2="42"></line>
+                  <line class="grid-line" x1="190" y1="14" x2="190" y2="66"></line>
+                  <line class="grid-line" x1="338" y1="14" x2="338" y2="66"></line>
+                  <path class="trend-line" d="M42 56 L190 45 L338 24"></path>
+                  <circle class="point" cx="42" cy="56" r="4"></circle>
+                  <circle class="point" cx="190" cy="45" r="4"></circle>
+                  <circle class="point point-accent" cx="338" cy="24" r="4"></circle>
+                  <text x="36" y="78">-10°C</text>
+                  <text x="180" y="78">-5°C</text>
+                  <text x="332" y="78">0°C</text>
+                  <text x="358" y="22">μ↑</text>
+                </svg>
+                <span class="data-strip" aria-label="冰面温度数据">
+                  <span class="data-chip">-10°C<strong>μ 0.032</strong></span>
+                  <span class="data-chip">-5°C<strong>μ 0.041</strong></span>
+                  <span class="data-chip">0°C<strong>μ 0.058</strong></span>
+                </span>
                 <span class="conclusion">冰面温度升高时，表面液膜增强，摩擦系数整体上升。</span>
                 <button class="return-button" type="button">返回总览</button>
               </span>
@@ -691,7 +1173,7 @@
           </span>
         </div>
 
-        <div class="card" role="button" tabindex="0" aria-label="查看金属材质数据">
+        <div class="card" role="button" tabindex="0" data-factor="material" aria-label="查看金属材质数据">
           <span class="card-inner">
             <span class="face card-front">
               <span class="front-content">
@@ -712,14 +1194,27 @@
                 <span class="back-title">金属材质</span>
                 <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
                 <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
-                <table>
-                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
-                  <tbody>
-                    <tr><td>铝</td><td>0.041</td></tr>
-                    <tr><td>铜</td><td>0.047</td></tr>
-                    <tr><td>不锈钢</td><td>0.052</td></tr>
-                  </tbody>
-                </table>
+                <svg class="mini-chart" viewBox="0 0 430 82" aria-label="金属材质趋势图">
+                  <line class="axis" x1="42" y1="66" x2="380" y2="66"></line>
+                  <line class="axis" x1="42" y1="14" x2="42" y2="66"></line>
+                  <line class="grid-line" x1="42" y1="42" x2="380" y2="42"></line>
+                  <rect class="bar" x="76" y="43" width="44" height="23" rx="5"></rect>
+                  <rect class="bar" x="190" y="34" width="44" height="32" rx="5"></rect>
+                  <rect class="bar bar-accent" x="304" y="26" width="44" height="40" rx="5"></rect>
+                  <path class="trend-line" d="M98 43 L212 34 L326 26"></path>
+                  <circle class="point" cx="98" cy="43" r="4"></circle>
+                  <circle class="point" cx="212" cy="34" r="4"></circle>
+                  <circle class="point point-accent" cx="326" cy="26" r="4"></circle>
+                  <text x="82" y="78">铝</text>
+                  <text x="196" y="78">铜</text>
+                  <text x="292" y="78">不锈钢</text>
+                  <text x="350" y="25">差异</text>
+                </svg>
+                <span class="data-strip" aria-label="金属材质数据">
+                  <span class="data-chip">铝<strong>μ 0.041</strong></span>
+                  <span class="data-chip">铜<strong>μ 0.047</strong></span>
+                  <span class="data-chip">不锈钢<strong>μ 0.052</strong></span>
+                </span>
                 <span class="conclusion">不同金属材质导致热传导与表面能差异，μ 存在可测差别。</span>
                 <button class="return-button" type="button">返回总览</button>
               </span>
@@ -727,7 +1222,7 @@
           </span>
         </div>
 
-        <div class="card" role="button" tabindex="0" aria-label="查看金属表面粗糙程度数据">
+        <div class="card" role="button" tabindex="0" data-factor="roughness" aria-label="查看金属表面粗糙程度数据">
           <span class="card-inner">
             <span class="face card-front">
               <span class="front-content">
@@ -748,14 +1243,27 @@
                 <span class="back-title">金属表面粗糙程度</span>
                 <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
                 <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
-                <table>
-                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
-                  <tbody>
-                    <tr><td>Ra 0.4 μm</td><td>0.035</td></tr>
-                    <tr><td>Ra 0.8 μm</td><td>0.041</td></tr>
-                    <tr><td>Ra 1.6 μm</td><td>0.056</td></tr>
-                  </tbody>
-                </table>
+                <svg class="mini-chart" viewBox="0 0 430 82" aria-label="粗糙程度趋势图">
+                  <path class="trend-fill" d="M42 58 L190 47 L338 25 L338 66 L42 66 Z"></path>
+                  <line class="axis" x1="42" y1="66" x2="380" y2="66"></line>
+                  <line class="axis" x1="42" y1="14" x2="42" y2="66"></line>
+                  <line class="grid-line" x1="42" y1="42" x2="380" y2="42"></line>
+                  <line class="grid-line" x1="190" y1="14" x2="190" y2="66"></line>
+                  <line class="grid-line" x1="338" y1="14" x2="338" y2="66"></line>
+                  <path class="trend-line" d="M42 58 L190 47 L338 25"></path>
+                  <circle class="point" cx="42" cy="58" r="4"></circle>
+                  <circle class="point" cx="190" cy="47" r="4"></circle>
+                  <circle class="point point-accent" cx="338" cy="25" r="4"></circle>
+                  <text x="26" y="78">Ra 0.4</text>
+                  <text x="174" y="78">Ra 0.8</text>
+                  <text x="320" y="78">Ra 1.6</text>
+                  <text x="356" y="25">μ↑</text>
+                </svg>
+                <span class="data-strip" aria-label="粗糙程度数据">
+                  <span class="data-chip">Ra 0.4<strong>μ 0.035</strong></span>
+                  <span class="data-chip">Ra 0.8<strong>μ 0.041</strong></span>
+                  <span class="data-chip">Ra 1.6<strong>μ 0.056</strong></span>
+                </span>
                 <span class="conclusion">粗糙程度增大后，机械咬合作用增强，摩擦系数上升。</span>
                 <button class="return-button" type="button">返回总览</button>
               </span>
@@ -763,7 +1271,7 @@
           </span>
         </div>
 
-        <div class="card" role="button" tabindex="0" aria-label="查看接触面积数据">
+        <div class="card" role="button" tabindex="0" data-factor="area" aria-label="查看接触面积数据">
           <span class="card-inner">
             <span class="face card-front">
               <span class="front-content">
@@ -784,14 +1292,27 @@
                 <span class="back-title">接触面积</span>
                 <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
                 <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
-                <table>
-                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
-                  <tbody>
-                    <tr><td>2.0 cm²</td><td>0.039</td></tr>
-                    <tr><td>4.0 cm²</td><td>0.041</td></tr>
-                    <tr><td>6.0 cm²</td><td>0.043</td></tr>
-                  </tbody>
-                </table>
+                <svg class="mini-chart" viewBox="0 0 430 82" aria-label="接触面积趋势图">
+                  <path class="trend-fill" d="M42 49 L190 47 L338 45 L338 66 L42 66 Z"></path>
+                  <line class="axis" x1="42" y1="66" x2="380" y2="66"></line>
+                  <line class="axis" x1="42" y1="14" x2="42" y2="66"></line>
+                  <line class="grid-line" x1="42" y1="42" x2="380" y2="42"></line>
+                  <line class="grid-line" x1="190" y1="14" x2="190" y2="66"></line>
+                  <line class="grid-line" x1="338" y1="14" x2="338" y2="66"></line>
+                  <path class="trend-line" d="M42 49 L190 47 L338 45"></path>
+                  <circle class="point" cx="42" cy="49" r="4"></circle>
+                  <circle class="point" cx="190" cy="47" r="4"></circle>
+                  <circle class="point point-accent" cx="338" cy="45" r="4"></circle>
+                  <text x="26" y="78">2.0 cm²</text>
+                  <text x="174" y="78">4.0 cm²</text>
+                  <text x="320" y="78">6.0 cm²</text>
+                  <text x="346" y="42">近似平缓</text>
+                </svg>
+                <span class="data-strip" aria-label="接触面积数据">
+                  <span class="data-chip">2.0 cm²<strong>μ 0.039</strong></span>
+                  <span class="data-chip">4.0 cm²<strong>μ 0.041</strong></span>
+                  <span class="data-chip">6.0 cm²<strong>μ 0.043</strong></span>
+                </span>
                 <span class="conclusion">在相同法向载荷下，接触面积变化对摩擦系数影响较弱。</span>
                 <button class="return-button" type="button">返回总览</button>
               </span>
@@ -799,7 +1320,7 @@
           </span>
         </div>
 
-        <div class="card" role="button" tabindex="0" aria-label="查看金属质量数据">
+        <div class="card" role="button" tabindex="0" data-factor="load" aria-label="查看金属质量数据">
           <span class="card-inner">
             <span class="face card-front">
               <span class="front-content">
@@ -820,14 +1341,27 @@
                 <span class="back-title">金属质量（法向载荷）</span>
                 <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
                 <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
-                <table>
-                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
-                  <tbody>
-                    <tr><td>100 g</td><td>0.038</td></tr>
-                    <tr><td>200 g</td><td>0.041</td></tr>
-                    <tr><td>300 g</td><td>0.045</td></tr>
-                  </tbody>
-                </table>
+                <svg class="mini-chart" viewBox="0 0 430 82" aria-label="法向载荷趋势图">
+                  <path class="trend-fill" d="M42 52 L190 46 L338 36 L338 66 L42 66 Z"></path>
+                  <line class="axis" x1="42" y1="66" x2="380" y2="66"></line>
+                  <line class="axis" x1="42" y1="14" x2="42" y2="66"></line>
+                  <line class="grid-line" x1="42" y1="42" x2="380" y2="42"></line>
+                  <line class="grid-line" x1="190" y1="14" x2="190" y2="66"></line>
+                  <line class="grid-line" x1="338" y1="14" x2="338" y2="66"></line>
+                  <path class="trend-line" d="M42 52 L190 46 L338 36"></path>
+                  <circle class="point" cx="42" cy="52" r="4"></circle>
+                  <circle class="point" cx="190" cy="46" r="4"></circle>
+                  <circle class="point point-accent" cx="338" cy="36" r="4"></circle>
+                  <text x="32" y="78">100 g</text>
+                  <text x="178" y="78">200 g</text>
+                  <text x="324" y="78">300 g</text>
+                  <text x="352" y="34">小幅↑</text>
+                </svg>
+                <span class="data-strip" aria-label="法向载荷数据">
+                  <span class="data-chip">100 g<strong>μ 0.038</strong></span>
+                  <span class="data-chip">200 g<strong>μ 0.041</strong></span>
+                  <span class="data-chip">300 g<strong>μ 0.045</strong></span>
+                </span>
                 <span class="conclusion">法向载荷增大时，界面压实效应增强，摩擦系数小幅上升。</span>
                 <button class="return-button" type="button">返回总览</button>
               </span>
@@ -835,7 +1369,7 @@
           </span>
         </div>
 
-        <div class="card" role="button" tabindex="0" aria-label="查看冰的成分数据">
+        <div class="card" role="button" tabindex="0" data-factor="ice" aria-label="查看冰的成分数据">
           <span class="card-inner">
             <span class="face card-front">
               <span class="front-content">
@@ -856,14 +1390,27 @@
                 <span class="back-title">冰的成分</span>
                 <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
                 <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
-                <table>
-                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
-                  <tbody>
-                    <tr><td>纯水冰</td><td>0.041</td></tr>
-                    <tr><td>低盐冰</td><td>0.049</td></tr>
-                    <tr><td>含杂质冰</td><td>0.055</td></tr>
-                  </tbody>
-                </table>
+                <svg class="mini-chart" viewBox="0 0 430 82" aria-label="冰的成分趋势图">
+                  <line class="axis" x1="42" y1="66" x2="380" y2="66"></line>
+                  <line class="axis" x1="42" y1="14" x2="42" y2="66"></line>
+                  <line class="grid-line" x1="42" y1="42" x2="380" y2="42"></line>
+                  <rect class="bar" x="76" y="44" width="44" height="22" rx="5"></rect>
+                  <rect class="bar" x="190" y="33" width="44" height="33" rx="5"></rect>
+                  <rect class="bar bar-accent" x="304" y="25" width="44" height="41" rx="5"></rect>
+                  <path class="trend-line" d="M98 44 L212 33 L326 25"></path>
+                  <circle class="point" cx="98" cy="44" r="4"></circle>
+                  <circle class="point" cx="212" cy="33" r="4"></circle>
+                  <circle class="point point-accent" cx="326" cy="25" r="4"></circle>
+                  <text x="72" y="78">纯水</text>
+                  <text x="184" y="78">低盐</text>
+                  <text x="296" y="78">含杂质</text>
+                  <text x="350" y="24">μ↑</text>
+                </svg>
+                <span class="data-strip" aria-label="冰的成分数据">
+                  <span class="data-chip">纯水冰<strong>μ 0.041</strong></span>
+                  <span class="data-chip">低盐冰<strong>μ 0.049</strong></span>
+                  <span class="data-chip">含杂质冰<strong>μ 0.055</strong></span>
+                </span>
                 <span class="conclusion">冰中溶质或杂质改变表面液膜与微结构，使摩擦系数升高。</span>
                 <button class="return-button" type="button">返回总览</button>
               </span>
@@ -871,6 +1418,31 @@
           </span>
         </div>
       </div>
+    </section>
+
+    <section class="analysis-overlay" aria-label="因素放大分析面板" aria-hidden="true">
+      <nav class="analysis-nav" aria-label="因素分析导航">
+        <div class="analysis-nav-title">影响因素</div>
+        <button class="analysis-nav-button" type="button" data-detail="temperature"><span>1</span><span>冰面温度</span></button>
+        <button class="analysis-nav-button" type="button" data-detail="material"><span>2</span><span>金属材质</span></button>
+        <button class="analysis-nav-button" type="button" data-detail="roughness"><span>3</span><span>粗糙程度</span></button>
+        <button class="analysis-nav-button" type="button" data-detail="area"><span>4</span><span>接触面积</span></button>
+        <button class="analysis-nav-button" type="button" data-detail="load"><span>5</span><span>法向载荷</span></button>
+        <button class="analysis-nav-button" type="button" data-detail="ice"><span>6</span><span>冰的成分</span></button>
+      </nav>
+      <div class="analysis-chart-panel">
+        <div class="analysis-kicker">单因素趋势图</div>
+        <div class="analysis-chart" id="analysisChart"></div>
+      </div>
+      <div class="analysis-info">
+        <button class="analysis-close" type="button">返回总览</button>
+        <div class="analysis-index" id="analysisIndex">T</div>
+        <h2 class="analysis-title" id="analysisTitle">冰面温度</h2>
+        <p class="analysis-control">控制变量：其余参数固定为基准实验条件</p>
+        <p class="analysis-baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</p>
+        <div class="analysis-data" id="analysisData"></div>
+      </div>
+      <p class="analysis-conclusion" id="analysisConclusion">冰面温度升高时，表面液膜增强，摩擦系数整体上升。</p>
     </section>
 
     <section class="summary-bar" aria-label="页面结论">
@@ -890,32 +1462,210 @@
   <script>
     (function () {
       var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+      var navButtons = Array.prototype.slice.call(document.querySelectorAll(".analysis-nav-button"));
+      var slide = document.querySelector(".slide");
+      var overlay = document.querySelector(".analysis-overlay");
+      var closeButton = document.querySelector(".analysis-close");
+      var titleNode = document.getElementById("analysisTitle");
+      var indexNode = document.getElementById("analysisIndex");
+      var chartNode = document.getElementById("analysisChart");
+      var dataNode = document.getElementById("analysisData");
+      var conclusionNode = document.getElementById("analysisConclusion");
+
+      var factorData = {
+        temperature: {
+          title: "冰面温度",
+          mark: "T",
+          chartTitle: "μ - 冰面温度关系",
+          type: "line",
+          labels: ["-10°C", "-5°C", "0°C"],
+          values: [0.032, 0.041, 0.058],
+          conclusion: "冰面温度升高时，表面液膜增强，摩擦系数整体上升。"
+        },
+        material: {
+          title: "金属材质",
+          mark: "M",
+          chartTitle: "μ - 金属材质关系",
+          type: "bar",
+          labels: ["铝", "铜", "不锈钢"],
+          values: [0.041, 0.047, 0.052],
+          conclusion: "不同金属材质导致热传导与表面能差异，摩擦系数存在可测差别。"
+        },
+        roughness: {
+          title: "金属表面粗糙程度",
+          mark: "Ra",
+          chartTitle: "μ - 粗糙度关系",
+          type: "line",
+          labels: ["Ra 0.4", "Ra 0.8", "Ra 1.6"],
+          values: [0.035, 0.041, 0.056],
+          conclusion: "粗糙程度增大后，机械咬合作用增强，摩擦系数上升。"
+        },
+        area: {
+          title: "接触面积",
+          mark: "A",
+          chartTitle: "μ - 接触面积关系",
+          type: "line",
+          labels: ["2.0 cm²", "4.0 cm²", "6.0 cm²"],
+          values: [0.039, 0.041, 0.043],
+          conclusion: "在相同法向载荷下，接触面积变化对摩擦系数影响较弱。"
+        },
+        load: {
+          title: "金属质量（法向载荷）",
+          mark: "N",
+          chartTitle: "μ - 法向载荷关系",
+          type: "line",
+          labels: ["100 g", "200 g", "300 g"],
+          values: [0.038, 0.041, 0.045],
+          conclusion: "法向载荷增大时，界面压实效应增强，摩擦系数小幅上升。"
+        },
+        ice: {
+          title: "冰的成分",
+          mark: "Ice",
+          chartTitle: "μ - 冰的成分关系",
+          type: "bar",
+          labels: ["纯水冰", "低盐冰", "含杂质冰"],
+          values: [0.041, 0.049, 0.055],
+          conclusion: "冰中溶质或杂质改变表面液膜与微结构，使摩擦系数升高。"
+        }
+      };
+
+      function formatValue(value) {
+        return value.toFixed(3);
+      }
+
+      function renderDataChips(item) {
+        dataNode.innerHTML = item.labels.map(function (label, index) {
+          return '<span class="data-chip">' + label + '<strong>μ ' + formatValue(item.values[index]) + '</strong></span>';
+        }).join("");
+      }
+
+      function renderChart(item) {
+        var width = 760;
+        var height = 394;
+        var left = 82;
+        var right = 54;
+        var top = 70;
+        var bottom = 68;
+        var plotW = width - left - right;
+        var plotH = height - top - bottom;
+        var min = Math.min.apply(null, item.values);
+        var max = Math.max.apply(null, item.values);
+        var pad = Math.max((max - min) * 0.22, 0.004);
+        min = Math.max(0, min - pad);
+        max = max + pad;
+
+        function xAt(index) {
+          if (item.values.length === 1) return left + plotW / 2;
+          return left + (plotW * index) / (item.values.length - 1);
+        }
+
+        function yAt(value) {
+          return top + (max - value) / (max - min) * plotH;
+        }
+
+        var grid = [0, 1, 2, 3].map(function (i) {
+          var y = top + plotH * i / 3;
+          return '<line class="grid" x1="' + left + '" y1="' + y + '" x2="' + (left + plotW) + '" y2="' + y + '"></line>';
+        }).join("");
+
+        var xLabels = item.labels.map(function (label, index) {
+          return '<text x="' + xAt(index) + '" y="' + (height - 26) + '" text-anchor="middle">' + label + '</text>';
+        }).join("");
+
+        var yLabels = [max, (max + min) / 2, min].map(function (value, index) {
+          var y = index === 0 ? top + 8 : index === 1 ? top + plotH / 2 + 6 : top + plotH + 4;
+          return '<text x="' + (left - 18) + '" y="' + y + '" text-anchor="end">' + formatValue(value) + '</text>';
+        }).join("");
+
+        var body = "";
+        if (item.type === "bar") {
+          var barW = 70;
+          body = item.values.map(function (value, index) {
+            var x = xAt(index) - barW / 2;
+            var y = yAt(value);
+            var h = top + plotH - y;
+            var cls = index === item.values.length - 1 ? "bar bar-accent" : "bar";
+            return '<rect class="' + cls + '" x="' + x + '" y="' + y + '" width="' + barW + '" height="' + h + '" rx="10"></rect>';
+          }).join("");
+          body += '<path class="trend" d="' + item.values.map(function (value, index) {
+            return (index === 0 ? "M" : "L") + xAt(index) + " " + yAt(value);
+          }).join(" ") + '"></path>';
+        } else {
+          var path = item.values.map(function (value, index) {
+            return (index === 0 ? "M" : "L") + xAt(index) + " " + yAt(value);
+          }).join(" ");
+          var area = path + " L" + xAt(item.values.length - 1) + " " + (top + plotH) + " L" + xAt(0) + " " + (top + plotH) + " Z";
+          body = '<path class="area" d="' + area + '"></path><path class="trend" d="' + path + '"></path>';
+        }
+
+        body += item.values.map(function (value, index) {
+          var cls = index === item.values.length - 1 ? "dot dot-accent" : "dot";
+          return '<circle class="' + cls + '" cx="' + xAt(index) + '" cy="' + yAt(value) + '" r="8"></circle>';
+        }).join("");
+
+        chartNode.innerHTML =
+          '<svg viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-label="' + item.chartTitle + '">' +
+          '<text class="chart-title" x="38" y="38">' + item.chartTitle + '</text>' +
+          grid +
+          '<line class="axis" x1="' + left + '" y1="' + (top + plotH) + '" x2="' + (left + plotW) + '" y2="' + (top + plotH) + '"></line>' +
+          '<line class="axis" x1="' + left + '" y1="' + top + '" x2="' + left + '" y2="' + (top + plotH) + '"></line>' +
+          '<text x="' + (left - 34) + '" y="' + (top - 18) + '">μ</text>' +
+          yLabels +
+          xLabels +
+          body +
+          '</svg>';
+      }
+
+      function openAnalysis(key) {
+        var item = factorData[key] || factorData.temperature;
+        navButtons.forEach(function (button) {
+          button.classList.toggle("active", button.getAttribute("data-detail") === key);
+        });
+        titleNode.textContent = item.title;
+        indexNode.textContent = item.mark;
+        conclusionNode.textContent = item.conclusion;
+        renderDataChips(item);
+        renderChart(item);
+        slide.classList.add("detail-open");
+        overlay.setAttribute("aria-hidden", "false");
+      }
+
+      function closeAnalysis() {
+        slide.classList.remove("detail-open");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+
+      navButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          openAnalysis(button.getAttribute("data-detail"));
+        });
+      });
 
       cards.forEach(function (card) {
         card.addEventListener("click", function (event) {
           if (event.target.closest(".return-button")) return;
-          card.classList.add("flipped");
+          openAnalysis(card.getAttribute("data-factor"));
         });
 
         card.addEventListener("keydown", function (event) {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            card.classList.add("flipped");
+            openAnalysis(card.getAttribute("data-factor"));
           }
         });
 
         var returnButton = card.querySelector(".return-button");
         returnButton.addEventListener("click", function (event) {
           event.stopPropagation();
-          card.classList.remove("flipped");
+          closeAnalysis();
         });
       });
 
+      closeButton.addEventListener("click", closeAnalysis);
+
       window.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
-          cards.forEach(function (card) {
-            card.classList.remove("flipped");
-          });
+          closeAnalysis();
         }
       });
     })();

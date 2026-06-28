@@ -1,0 +1,24 @@
+WPS HTML 素材交互页插入说明
+
+目标文件：
+1. 交互 HTML：F:\Users\user\Documents\测金属摩擦系数\outputs\wps_factor_matrix_interactive_v1.html
+2. WPS 粘贴版：F:\Users\user\Documents\测金属摩擦系数\outputs\wps_factor_matrix_interactive_v1_for_wps_paste.txt
+3. 承载 PPT：F:\Users\user\Documents\测金属摩擦系数\outputs\wps_factor_matrix_interactive_carrier_v1.pptx
+
+推荐插入方式：
+1. 用 WPS 打开承载 PPT 或你的正式答辩 PPT。
+2. 进入目标页，选择「插入」-「HTML素材」。
+3. 打开 wps_factor_matrix_interactive_v1_for_wps_paste.txt，全选复制其中全部代码。
+4. 粘贴到 WPS HTML 素材代码框，点击运行/插入。
+5. 将 HTML 素材对象铺满整页 16:9 画布。
+6. 放映时点击任意因素卡片进入放大分析，点击「返回总览」回到矩阵。
+
+已验证交互：
+- 点击「冰面温度」进入详情态。
+- 详情态趋势图可渲染。
+- 左侧导航可切换到「金属材质」。
+- 点击「返回总览」可恢复矩阵。
+- Chrome 控制台无 JS 错误。
+
+重要限制：
+标准 .pptx 文件本身没有公开、稳定的 WPS「HTML素材」对象写入接口。本交付包提供的是可直接粘贴到 WPS HTML 素材中的交互运行体，以及一个新建承载 PPT；最终嵌入动作需要在 WPS 界面中执行一次。
