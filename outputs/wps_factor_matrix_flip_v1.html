@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>影响因素交互矩阵 - WPS HTML 素材原型</title>
+  <style>
+    :root {
+      --navy: #07346F;
+      --navy-2: #0A4C9A;
+      --blue: #176DBF;
+      --blue-soft: #DCEEFF;
+      --ice: #F4FAFF;
+      --panel: rgba(248, 252, 255, 0.82);
+      --panel-strong: rgba(255, 255, 255, 0.94);
+      --line: rgba(23, 109, 191, 0.22);
+      --line-strong: #9EC7EF;
+      --orange: #FF7A1A;
+      --text: #0A1830;
+      --muted: #4B637E;
+      --pale: #D7E9FA;
+      --shadow: rgba(42, 78, 119, 0.18);
+      --card-w: 490px;
+      --card-h: 250px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #DDECF8;
+      color: var(--text);
+      font-family: "Microsoft YaHei", "Source Han Sans SC", "PingFang SC", Arial, sans-serif;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .slide {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      transform-origin: center center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.82) 72%, #F6FBFF 100%),
+        radial-gradient(circle at 74% 8%, rgba(159, 204, 239, 0.55), transparent 30%),
+        linear-gradient(135deg, #EEF8FF 0%, #D7EAF9 44%, #F8FCFF 100%);
+      isolation: isolate;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background:
+        linear-gradient(145deg, transparent 0 43%, rgba(71, 139, 192, 0.13) 43.3% 45%, transparent 45.4% 100%) 1450px 82px / 420px 210px no-repeat,
+        linear-gradient(137deg, transparent 0 39%, rgba(7, 52, 111, 0.10) 39.2% 41%, transparent 41.4% 100%) 1305px 126px / 360px 180px no-repeat,
+        linear-gradient(142deg, transparent 0 42%, rgba(255, 255, 255, 0.82) 42.2% 44.5%, transparent 45% 100%) 1500px 126px / 340px 170px no-repeat,
+        linear-gradient(145deg, transparent 0 47%, rgba(71, 139, 192, 0.10) 47.2% 49%, transparent 49.4% 100%) 80px 268px / 360px 190px no-repeat;
+      opacity: 0.95;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      left: -90px;
+      right: -90px;
+      bottom: 118px;
+      height: 520px;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.96), rgba(255,255,255,0.56) 44%, transparent 70%),
+        linear-gradient(172deg, transparent 0 45%, rgba(177, 210, 235, 0.34) 45.2% 45.8%, transparent 46.2% 100%),
+        linear-gradient(7deg, transparent 0 51%, rgba(117, 164, 204, 0.16) 51.2% 51.7%, transparent 52% 100%);
+    }
+
+    .scale-guide {
+      position: absolute;
+      inset: 0;
+    }
+
+    .header-band {
+      position: absolute;
+      left: 92px;
+      top: 64px;
+      width: 1736px;
+      height: 212px;
+      border-radius: 26px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.94), rgba(255,255,255,0.78) 52%, rgba(255,255,255,0.32)),
+        linear-gradient(180deg, rgba(215,233,250,0.65), rgba(255,255,255,0.16));
+      border: 1px solid rgba(158, 199, 239, 0.36);
+      box-shadow: 0 18px 46px rgba(66, 104, 145, 0.12);
+      overflow: hidden;
+    }
+
+    .header-band::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 86% 30%, rgba(23, 109, 191, 0.10), transparent 30%),
+        linear-gradient(110deg, transparent 0 66%, rgba(255,255,255,0.42) 66.2% 68%, transparent 68.5% 100%);
+      pointer-events: none;
+    }
+
+    .title-area {
+      position: absolute;
+      left: 122px;
+      top: 86px;
+      height: 166px;
+      display: grid;
+      grid-template-columns: 188px 1fr;
+      column-gap: 36px;
+      align-items: center;
+      color: var(--navy);
+    }
+
+    .page-mark {
+      position: relative;
+      height: 166px;
+      display: flex;
+      align-items: center;
+      padding-left: 42px;
+    }
+
+    .page-mark::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 4px;
+      height: 130px;
+      border-radius: 999px;
+      background: var(--orange);
+    }
+
+    .page-number {
+      font-size: 94px;
+      line-height: 0.9;
+      font-weight: 800;
+      letter-spacing: 0;
+      background: linear-gradient(180deg, #FF8B2B 0%, #F06A00 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .title-copy h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 58px;
+      line-height: 1.05;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .title-rule {
+      width: 140px;
+      height: 14px;
+      margin: 24px 0 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--navy-2), #1B79C9);
+      box-shadow: 0 5px 12px rgba(23, 109, 191, 0.22);
+    }
+
+    .subtitle {
+      margin: 20px 0 0;
+      color: var(--navy);
+      font-size: 28px;
+      line-height: 1.28;
+      font-weight: 680;
+    }
+
+    .hint-strip {
+      position: absolute;
+      right: 126px;
+      top: 116px;
+      width: 420px;
+      padding: 18px 24px 20px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+      border-left: 1px solid rgba(255, 122, 26, 0.42);
+    }
+
+    .hint-strip strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--navy);
+      font-size: 24px;
+      font-weight: 720;
+    }
+
+    .matrix-wrap {
+      position: absolute;
+      left: 112px;
+      right: 112px;
+      top: 316px;
+      height: 536px;
+    }
+
+    .matrix {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(3, var(--card-w));
+      grid-template-rows: repeat(2, var(--card-h));
+      justify-content: space-between;
+      align-content: space-between;
+      perspective: 1400px;
+    }
+
+    .card {
+      position: relative;
+      width: var(--card-w);
+      height: var(--card-h);
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      perspective: 1100px;
+      outline: none;
+    }
+
+    .card-inner {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transition: transform 0.72s cubic-bezier(0.2, 0.78, 0.18, 1);
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-inner::after {
+      content: "";
+      position: absolute;
+      top: 14px;
+      right: -12px;
+      width: 18px;
+      height: calc(100% - 28px);
+      border-radius: 0 16px 16px 0;
+      background: linear-gradient(90deg, rgba(125,169,210,0.34), rgba(255,255,255,0.28));
+      transform: rotateY(90deg);
+      transform-origin: left center;
+      opacity: 0.72;
+    }
+
+    .face {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 20px;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      border: 1px solid rgba(139, 188, 230, 0.52);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(244,250,255,0.78)),
+        linear-gradient(135deg, rgba(220,238,255,0.8), rgba(255,255,255,0.72));
+      box-shadow:
+        0 20px 42px rgba(66, 104, 145, 0.16),
+        inset 0 1px 0 rgba(255,255,255,0.92);
+    }
+
+    .face::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 78px;
+      background:
+        linear-gradient(180deg, rgba(220,238,255,0.80), rgba(255,255,255,0.20)),
+        linear-gradient(90deg, transparent, rgba(23,109,191,0.14), transparent);
+      border-bottom: 1px solid rgba(23,109,191,0.16);
+      pointer-events: none;
+    }
+
+    .face::after {
+      content: "";
+      position: absolute;
+      inset: 13px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.76);
+      pointer-events: none;
+    }
+
+    .card:focus-visible .face {
+      box-shadow:
+        0 0 0 4px rgba(255,122,26,0.38),
+        0 20px 42px rgba(66, 104, 145, 0.16),
+        inset 0 1px 0 rgba(255,255,255,0.92);
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(243,249,255,0.92)),
+        linear-gradient(135deg, rgba(220,238,255,0.72), rgba(255,255,255,0.86));
+    }
+
+    .front-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-rows: 58px 1fr auto;
+      padding: 24px 30px 24px;
+      text-align: left;
+    }
+
+    .front-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .factor-index {
+      color: rgba(23,109,191,0.15);
+      font-size: 58px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .factor-chip {
+      min-width: 86px;
+      height: 30px;
+      padding: 0 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 650;
+      border-radius: 999px;
+      border: 1px solid rgba(23,109,191,0.22);
+      background: rgba(255,255,255,0.56);
+    }
+
+    .front-main {
+      align-self: center;
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .icon-disc {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      font-size: 34px;
+      font-weight: 760;
+      background:
+        radial-gradient(circle at 30% 24%, rgba(255,255,255,0.98), rgba(238,248,255,0.9)),
+        linear-gradient(180deg, #FFFFFF, #E7F3FF);
+      border: 1px solid rgba(23,109,191,0.25);
+      box-shadow:
+        0 12px 26px rgba(66,104,145,0.16),
+        inset 0 0 0 7px rgba(220,238,255,0.45);
+    }
+
+    .factor-name {
+      color: var(--navy);
+      font-size: 31px;
+      line-height: 1.18;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .front-note {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.35;
+      padding-left: 104px;
+      padding-right: 132px;
+    }
+
+    .flip-cue {
+      position: absolute;
+      right: 28px;
+      bottom: 23px;
+      color: rgba(23,109,191,0.74);
+      font-size: 15px;
+      font-weight: 650;
+    }
+
+    .back-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      padding: 16px 22px 14px;
+      display: grid;
+      grid-template-rows: auto auto auto auto auto;
+      gap: 5px;
+      text-align: left;
+    }
+
+    .back-title {
+      margin: 0;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.12;
+      font-weight: 760;
+      padding-right: 118px;
+    }
+
+    .control-note {
+      margin: 0;
+      color: var(--blue);
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 650;
+    }
+
+    .baseline {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.22;
+    }
+
+    table {
+      width: 100%;
+      align-self: stretch;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border: 1px solid rgba(23,109,191,0.16);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.62);
+      font-size: 13px;
+    }
+
+    th,
+    td {
+      padding: 5px 10px;
+      border-bottom: 1px solid rgba(23,109,191,0.13);
+      text-align: left;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    th {
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 720;
+      background: rgba(220,238,255,0.72);
+    }
+
+    td:last-child,
+    th:last-child {
+      width: 34%;
+      text-align: right;
+      font-family: "Consolas", "Cascadia Mono", "Microsoft YaHei", monospace;
+      color: #E06F10;
+      font-weight: 720;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .conclusion {
+      display: block;
+      margin: 0;
+      padding: 6px 10px 6px 12px;
+      color: var(--navy);
+      font-size: 11px;
+      line-height: 1.28;
+      border-left: 3px solid var(--orange);
+      background: rgba(255,255,255,0.56);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .return-button {
+      position: absolute;
+      right: 24px;
+      top: 19px;
+      width: 106px;
+      height: 34px;
+      border: 1px solid rgba(23,109,191,0.34);
+      border-radius: 999px;
+      color: var(--navy);
+      background: rgba(255,255,255,0.72);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 680;
+      box-shadow: 0 7px 15px rgba(66,104,145,0.10);
+    }
+
+    .return-button:hover {
+      color: #FFFFFF;
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .summary-bar {
+      position: absolute;
+      left: 112px;
+      right: 112px;
+      bottom: 132px;
+      height: 92px;
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      align-items: center;
+      column-gap: 24px;
+      padding: 0 38px;
+      border-radius: 20px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.90), rgba(248,252,255,0.76)),
+        linear-gradient(180deg, rgba(220,238,255,0.62), rgba(255,255,255,0.42));
+      border: 1px solid rgba(158,199,239,0.38);
+      box-shadow: 0 16px 34px rgba(66,104,145,0.13);
+    }
+
+    .summary-icon {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--navy-2);
+      color: white;
+      font-size: 26px;
+      font-weight: 760;
+      box-shadow: 0 10px 22px rgba(23,109,191,0.24);
+    }
+
+    .summary-text {
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.38;
+      font-weight: 720;
+    }
+
+    .footer {
+      position: absolute;
+      left: 112px;
+      right: 112px;
+      bottom: 54px;
+      height: 42px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      color: var(--navy);
+      border-top: 2px solid rgba(23,109,191,0.28);
+      padding-top: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 20px;
+      font-weight: 650;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 58px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--navy-2);
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      bottom: 7px;
+      width: 28px;
+      height: 20px;
+      border: 4px solid #FFFFFF;
+      border-right: 0;
+      border-bottom: 0;
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+
+    .brand-mark::before {
+      left: 10px;
+    }
+
+    .brand-mark::after {
+      left: 26px;
+      width: 22px;
+      height: 16px;
+      opacity: 0.86;
+    }
+
+    .page-total {
+      font-size: 27px;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-aspect-ratio: 16 / 9) {
+      .slide {
+        transform: scale(calc(100vw / 1920));
+      }
+    }
+
+    @media (min-aspect-ratio: 16 / 9) {
+      .slide {
+        transform: scale(calc(100vh / 1080));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="slide" aria-label="影响因素交互矩阵">
+    <div class="scale-guide"></div>
+
+    <section class="header-band" aria-hidden="true"></section>
+
+    <header class="title-area">
+      <div class="page-mark">
+        <div class="page-number">09</div>
+      </div>
+      <div class="title-copy">
+        <h1>影响因素交互矩阵</h1>
+        <div class="title-rule"></div>
+        <p class="subtitle">点击因素卡片，查看单一变量对摩擦系数 μ 的影响规律</p>
+      </div>
+    </header>
+
+    <aside class="hint-strip">
+      <strong>控制变量法</strong>
+      每次只改变一个因素，其余参数固定为基准实验条件，用交互翻转呈现数据与结论。
+    </aside>
+
+    <section class="matrix-wrap">
+      <div class="matrix" aria-label="六项影响因素">
+        <div class="card" role="button" tabindex="0" aria-label="查看冰面温度数据">
+          <span class="card-inner">
+            <span class="face card-front">
+              <span class="front-content">
+                <span class="front-top">
+                  <span class="factor-index">1</span>
+                  <span class="factor-chip">温度梯度</span>
+                </span>
+                <span class="front-main">
+                  <span class="icon-disc">T</span>
+                  <span class="factor-name">冰面温度</span>
+                </span>
+                <span class="front-note">改变冰面温度，观察界面液膜对 μ 的影响。</span>
+                <span class="flip-cue">点击查看数据</span>
+              </span>
+            </span>
+            <span class="face card-back">
+              <span class="back-content">
+                <span class="back-title">冰面温度</span>
+                <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
+                <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
+                <table>
+                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
+                  <tbody>
+                    <tr><td>-10°C</td><td>0.032</td></tr>
+                    <tr><td>-5°C</td><td>0.041</td></tr>
+                    <tr><td>0°C</td><td>0.058</td></tr>
+                  </tbody>
+                </table>
+                <span class="conclusion">冰面温度升高时，表面液膜增强，摩擦系数整体上升。</span>
+                <button class="return-button" type="button">返回总览</button>
+              </span>
+            </span>
+          </span>
+        </div>
+
+        <div class="card" role="button" tabindex="0" aria-label="查看金属材质数据">
+          <span class="card-inner">
+            <span class="face card-front">
+              <span class="front-content">
+                <span class="front-top">
+                  <span class="factor-index">2</span>
+                  <span class="factor-chip">材料差异</span>
+                </span>
+                <span class="front-main">
+                  <span class="icon-disc">M</span>
+                  <span class="factor-name">金属材质</span>
+                </span>
+                <span class="front-note">比较不同金属表面能与热传导差异。</span>
+                <span class="flip-cue">点击查看数据</span>
+              </span>
+            </span>
+            <span class="face card-back">
+              <span class="back-content">
+                <span class="back-title">金属材质</span>
+                <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
+                <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
+                <table>
+                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
+                  <tbody>
+                    <tr><td>铝</td><td>0.041</td></tr>
+                    <tr><td>铜</td><td>0.047</td></tr>
+                    <tr><td>不锈钢</td><td>0.052</td></tr>
+                  </tbody>
+                </table>
+                <span class="conclusion">不同金属材质导致热传导与表面能差异，μ 存在可测差别。</span>
+                <button class="return-button" type="button">返回总览</button>
+              </span>
+            </span>
+          </span>
+        </div>
+
+        <div class="card" role="button" tabindex="0" aria-label="查看金属表面粗糙程度数据">
+          <span class="card-inner">
+            <span class="face card-front">
+              <span class="front-content">
+                <span class="front-top">
+                  <span class="factor-index">3</span>
+                  <span class="factor-chip">表面形貌</span>
+                </span>
+                <span class="front-main">
+                  <span class="icon-disc">Ra</span>
+                  <span class="factor-name">金属表面<br>粗糙程度</span>
+                </span>
+                <span class="front-note">调整 Ra 值，分析机械咬合对滑动阻力的贡献。</span>
+                <span class="flip-cue">点击查看数据</span>
+              </span>
+            </span>
+            <span class="face card-back">
+              <span class="back-content">
+                <span class="back-title">金属表面粗糙程度</span>
+                <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
+                <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
+                <table>
+                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
+                  <tbody>
+                    <tr><td>Ra 0.4 μm</td><td>0.035</td></tr>
+                    <tr><td>Ra 0.8 μm</td><td>0.041</td></tr>
+                    <tr><td>Ra 1.6 μm</td><td>0.056</td></tr>
+                  </tbody>
+                </table>
+                <span class="conclusion">粗糙程度增大后，机械咬合作用增强，摩擦系数上升。</span>
+                <button class="return-button" type="button">返回总览</button>
+              </span>
+            </span>
+          </span>
+        </div>
+
+        <div class="card" role="button" tabindex="0" aria-label="查看接触面积数据">
+          <span class="card-inner">
+            <span class="face card-front">
+              <span class="front-content">
+                <span class="front-top">
+                  <span class="factor-index">4</span>
+                  <span class="factor-chip">接触条件</span>
+                </span>
+                <span class="front-main">
+                  <span class="icon-disc">A</span>
+                  <span class="factor-name">接触面积</span>
+                </span>
+                <span class="front-note">改变接触面积，检验宏观接触尺度敏感性。</span>
+                <span class="flip-cue">点击查看数据</span>
+              </span>
+            </span>
+            <span class="face card-back">
+              <span class="back-content">
+                <span class="back-title">接触面积</span>
+                <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
+                <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
+                <table>
+                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
+                  <tbody>
+                    <tr><td>2.0 cm²</td><td>0.039</td></tr>
+                    <tr><td>4.0 cm²</td><td>0.041</td></tr>
+                    <tr><td>6.0 cm²</td><td>0.043</td></tr>
+                  </tbody>
+                </table>
+                <span class="conclusion">在相同法向载荷下，接触面积变化对摩擦系数影响较弱。</span>
+                <button class="return-button" type="button">返回总览</button>
+              </span>
+            </span>
+          </span>
+        </div>
+
+        <div class="card" role="button" tabindex="0" aria-label="查看金属质量数据">
+          <span class="card-inner">
+            <span class="face card-front">
+              <span class="front-content">
+                <span class="front-top">
+                  <span class="factor-index">5</span>
+                  <span class="factor-chip">载荷变化</span>
+                </span>
+                <span class="front-main">
+                  <span class="icon-disc">N</span>
+                  <span class="factor-name">金属质量<br>（法向载荷）</span>
+                </span>
+                <span class="front-note">改变质量，分析法向载荷对接触状态的影响。</span>
+                <span class="flip-cue">点击查看数据</span>
+              </span>
+            </span>
+            <span class="face card-back">
+              <span class="back-content">
+                <span class="back-title">金属质量（法向载荷）</span>
+                <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
+                <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
+                <table>
+                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
+                  <tbody>
+                    <tr><td>100 g</td><td>0.038</td></tr>
+                    <tr><td>200 g</td><td>0.041</td></tr>
+                    <tr><td>300 g</td><td>0.045</td></tr>
+                  </tbody>
+                </table>
+                <span class="conclusion">法向载荷增大时，界面压实效应增强，摩擦系数小幅上升。</span>
+                <button class="return-button" type="button">返回总览</button>
+              </span>
+            </span>
+          </span>
+        </div>
+
+        <div class="card" role="button" tabindex="0" aria-label="查看冰的成分数据">
+          <span class="card-inner">
+            <span class="face card-front">
+              <span class="front-content">
+                <span class="front-top">
+                  <span class="factor-index">6</span>
+                  <span class="factor-chip">冰体状态</span>
+                </span>
+                <span class="front-main">
+                  <span class="icon-disc">Ice</span>
+                  <span class="factor-name">冰的成分</span>
+                </span>
+                <span class="front-note">比较纯水冰与含盐/含杂质冰的表面差异。</span>
+                <span class="flip-cue">点击查看数据</span>
+              </span>
+            </span>
+            <span class="face card-back">
+              <span class="back-content">
+                <span class="back-title">冰的成分</span>
+                <span class="control-note">控制变量：其余参数固定为基准实验条件</span>
+                <span class="baseline">基准：-5°C；铝；Ra 0.8 μm；4.0 cm²；200 g；纯水冰</span>
+                <table>
+                  <thead><tr><th>梯度条件</th><th>摩擦系数 μ</th></tr></thead>
+                  <tbody>
+                    <tr><td>纯水冰</td><td>0.041</td></tr>
+                    <tr><td>低盐冰</td><td>0.049</td></tr>
+                    <tr><td>含杂质冰</td><td>0.055</td></tr>
+                  </tbody>
+                </table>
+                <span class="conclusion">冰中溶质或杂质改变表面液膜与微结构，使摩擦系数升高。</span>
+                <button class="return-button" type="button">返回总览</button>
+              </span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="summary-bar" aria-label="页面结论">
+      <div class="summary-icon">μ</div>
+      <div class="summary-text">以 6 个单因素卡片呈现控制变量分析框架：每次只改变一个变量，翻转查看数据与趋势。</div>
+    </section>
+
+    <footer class="footer">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>金属与冰摩擦系数测量</span>
+      </div>
+      <div class="page-total">09 / 10</div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+
+      cards.forEach(function (card) {
+        card.addEventListener("click", function (event) {
+          if (event.target.closest(".return-button")) return;
+          card.classList.add("flipped");
+        });
+
+        card.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            card.classList.add("flipped");
+          }
+        });
+
+        var returnButton = card.querySelector(".return-button");
+        returnButton.addEventListener("click", function (event) {
+          event.stopPropagation();
+          card.classList.remove("flipped");
+        });
+      });
+
+      window.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          cards.forEach(function (card) {
+            card.classList.remove("flipped");
+          });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
