@@ -1,0 +1,34 @@
+Use case: productivity-visual
+Asset type: independent 16:9 high-resolution PPT single-slide visual blueprint
+Input images: Image 1 is the confirmed page 08 thumbnail reference cropped from the approved 10-slide collage. Use it as the strict visual master for layout, composition, colors, hierarchy, and subject placement.
+
+Primary request:
+Expand Image 1 into one independent high-resolution 16:9 PowerPoint slide visual draft for page 08 only. This is a faithful high-resolution reconstruction, not a redesign.
+
+Page identity:
+Page number: 08
+Main title text: 数据处理
+Process nodes: x,t -> a -> μ -> U(μ)
+Formulas: a = d²x / dt²; μ = (g sinθ - a) / (g cosθ)
+
+Strict layout to preserve:
+- Landscape 16:9, straight orthographic PPT screenshot.
+- Upper-left page number "08" and title "数据处理" in deep navy.
+- Main body has four large pale circular process nodes arranged horizontally with arrows between them.
+- Node 1 label: x,t, original measurement data.
+- Node 2 label: a, acceleration calculation.
+- Node 3 label: μ, friction coefficient.
+- Node 4 label: U(μ), uncertainty evaluation.
+- Bottom area has two formula blocks under the relevant nodes, matching the thumbnail.
+- Pale glacier mountain background, soft mist, footer lower-left, page counter lower-right.
+
+Visual system:
+Premium polar engineering Keynote style, pale glass process circles, fine arrows, deep navy technical typography, clean scientific flow.
+
+Text rules:
+Render page number, title, x,t, a, μ, U(μ), and formulas clearly where possible.
+Use short labels only; no乱码 and no long random Chinese.
+Do not invent new process stages, equations, or data.
+
+Avoid:
+collage, multi-slide layout, extra nodes, changed flow direction, dark cyber dashboard, overdone glow, industrial whitepaper, random text, watermark, perspective frame.

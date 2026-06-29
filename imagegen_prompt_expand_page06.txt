@@ -1,0 +1,33 @@
+Use case: productivity-visual
+Asset type: independent 16:9 high-resolution PPT single-slide visual blueprint
+Input images: Image 1 is the confirmed page 06 thumbnail reference cropped from the approved 10-slide collage. Use it as the strict visual master for layout, composition, colors, hierarchy, and subject placement.
+
+Primary request:
+Expand Image 1 into one independent high-resolution 16:9 PowerPoint slide visual draft for page 06 only. This is a faithful high-resolution reconstruction, not a redesign.
+
+Page identity:
+Page number: 06
+Main title text: 变量设计
+Central symbol: μ
+Factors: 温度, 压力, 材料, 接触粗糙度, 接触面积, 冰的组成
+
+Strict layout to preserve:
+- Landscape 16:9, straight orthographic PPT screenshot.
+- Upper-left page number "06" and title in deep navy.
+- Center has a large pale circular hub with the Greek letter μ.
+- Around it is a radial matrix of six circular icon nodes connected by fine dotted/solid circular guide lines.
+- Factor text labels are distributed left and right around the matrix, matching the thumbnail.
+- Pale glacier-white and ice-blue background, subtle polar landscape, clean negative space.
+- Footer lower-left and page counter lower-right.
+
+Visual system:
+Premium polar engineering Keynote style, pale icy glass circles, deep navy typography, fine technical line icons, calm scientific diagram, not a dashboard.
+
+Text rules:
+Render page number, title, μ, and factor names clearly if possible.
+Use short value ranges only where visible, such as -30°C–0°C, 0.1–1.0 MPa, Ra 0.05–1.6 μm.
+Do not invent new variables or precise experimental conclusions.
+No乱码 and no long random Chinese.
+
+Avoid:
+collage, multi-slide layout, dark cyber dashboard, overcomplicated radar chart, extra factors, new data, industrial whitepaper, random text, watermark, perspective frame.

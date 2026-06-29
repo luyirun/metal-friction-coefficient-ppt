@@ -1,0 +1,32 @@
+Use case: productivity-visual
+Asset type: independent 16:9 high-resolution PPT single-slide visual blueprint
+Input images: Image 1 is the confirmed page 07 thumbnail reference cropped from the approved 10-slide collage. Use it as the strict visual master for layout, composition, colors, hierarchy, and subject placement.
+
+Primary request:
+Expand Image 1 into one independent high-resolution 16:9 PowerPoint slide visual draft for page 07 only. This is a faithful high-resolution reconstruction, not a redesign.
+
+Page identity:
+Page number: 07
+Main title text: 问题改进
+Three card themes: 冰样制备优化, 平整度与温控, 传感器可靠性
+
+Strict layout to preserve:
+- Landscape 16:9, straight orthographic PPT screenshot.
+- Upper-left page number "07" and title "问题改进" in deep navy.
+- Main body has exactly three large image cards arranged horizontally.
+- Card 1: ice cube / ice sample close-up.
+- Card 2: temperature control / measurement device close-up with cool digital display.
+- Card 3: sensor / mechanical testing close-up with darker metallic detail.
+- Each card has a rounded pale glass lower caption area with a bold short title and one or two short lines.
+- Pale glacier background and subtle footer lower-left, page counter lower-right.
+
+Visual system:
+Premium polar engineering Keynote style, realistic technical close-up photography, glacier white and ice-blue palette, restrained card shadows, deep navy text.
+
+Text rules:
+Render page number, title, and three card titles clearly.
+Small captions may be concise and simplified; no乱码 and no long random Chinese.
+Do not add a fourth card or new problem category.
+
+Avoid:
+collage, multi-slide layout, changed card count, cartoon icons, dark dashboard except the third photo can be slightly darker as in reference, industrial whitepaper, random text, watermark, perspective frame.
